@@ -12,27 +12,30 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="static/img/LGescuela.jpg" width="50px" height="50px">
+                <span class="h5">EORM Manuel García Elgueta</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto ml-auto ">
-                    <!--<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>-->
-                    <li class="nav-item"><a class="nav-link" href="juegos.html">Juegos</a></li>
+                <ul class="navbar-nav ml-auto">
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                   
                     <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
-                 <!----   <li class="nav-item"><a class="nav-link" href="#">Register</a></li>-->
                     <li class="nav-item"><a class="nav-link" href="login">Iniciar Sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
   <!-- Carrousel-->
-    <div id="mainSlider" class="carousel slide" data-ride="carousel" align="center">
+    {{!-- <div id="mainSlider" class="carousel slide" data-ride="carousel" align="center">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-75" src="" alt="First slide">
+            <img class="d-block w-" src="" alt="First slide">
           </div>
           <div class="carousel-item active">
             <img class="d-block w-75" src="static/img/school.jpg" alt="Second slide">
@@ -41,34 +44,17 @@
             <img class="d-block w-75" src="static/img/vista.jpg" alt="Third slide">
           </div>
         </div>
-      </div>
-    <!-- Ribbon listado-->
-    <div id="ribbon" class="container-fluid">
-        <div id="birthday" class="container w-50 pl-6 rounded-lg">
-
-            <div class="row aling-items-center">
-                <div class="col-sm p-3">
-                    <img src="static/img/LGescuela.jpg" class="w-75 mx-auto d-block" alt="">
-                </div>
-                <div class="col-sm p-3 text-aling text-center">
-                    <p class="text_warning h3">Pagina Realizada por:</p>
-                    <h4>Derick Vasquez</h4>
-                    <h4>Proyecto de Graduacion</h4>
-                    <p class="text_warning h3">Asesorado por:</p>
-                    <h4>Ing. Luis Armando Tezo</h4>
-                </div>
-            </div>
-        </div>
-    </div>
+      </div> --}}
+    
     <!-- Separador de ribon/-->
     <div id="separator-ribbon">
         <div class="content bg-warning"></div>
     </div>
      <!-- Juegos-->
      <div id="games">
-         <div class="container-md p-5">
-             <div class="row pt-5">
-                 <h3 class="text-center pb-5 pt-5 h1 " style="color: var(--bs-white)"> Educación Montessori</h3>
+         <div class="container-md">
+             <div class="row">
+                 <h3 class="text-center h1 text-black pt-5"> Educación Montessori</h3>
              </div>
              <div class=" row pt-5">
                  <div class="col-sm">
@@ -101,7 +87,23 @@
                       </div>                     
                  </div>
              </div>
-
+<!-- Ribbon listado-->
+    <div id="ribbon" class="container-fluid">
+        <div id="birthday" class="container w-50 pl-6 rounded-lg">
+            <div class="row aling-items-center">
+                <div class="col-sm p-3">
+                    <img src="static/img/LGescuela.jpg" class="w-75 mx-auto d-block" alt="">
+                </div>
+              <div class="col-sm p-3 text-aling text-center">
+                    <p class="text_warning h3">Pagina Realizada por:</p>
+                    <h4>Derick Vasquez</h4>
+                    <h4>Proyecto de Graduacion</h4>
+                    <p class="text_warning h3">Asesorado por:</p>
+                    <h4>Ing. Luis Armando Tezo</h4>
+              </div>
+          </div>
+        </div>
+    </div>
              <div class="row py-5">
                  <div class="col">
                      <h3 class="text-center" style="color: var(--bs-blue)">Mas informacion sobre Montessori</h3>
@@ -109,10 +111,10 @@
              </div>
             
          </div>
-         <div class="row justify-content-center">
-             <div class="col-2"><a href="https://es.wikipedia.org/wiki/Método_Montessori">Montessori</a></div>
-             <div class="col-2"><a href="https://www.creciendoconmontessori.com/2020/04/juguetes-educativos-para-aprender-a-leer-y-escribir.html">CreciencoConMontessori</a></div>
-             <div class="col-2"><a href="https://umg.edu.gt/?fbclid=IwAR2xVy2WoKsu058oTEl2amf81W_L7_NxaPOb59I6NtbLAkdSYjeIU6xPWGI">UMG</a></div>
+         <div class="d-flex justify-content-evenly pb-5">
+             <div class=""><a href="https://es.wikipedia.org/wiki/Método_Montessori">Montessori</a></div>
+             <div class=""><a href="https://www.creciendoconmontessori.com/2020/04/juguetes-educativos-para-aprender-a-leer-y-escribir.html">CreciencoConMontessori</a></div>
+             <div class=""><a href="https://umg.edu.gt/?fbclid=IwAR2xVy2WoKsu058oTEl2amf81W_L7_NxaPOb59I6NtbLAkdSYjeIU6xPWGI">UMG</a></div>
          </div>
      </div>
     <!-- Separador amiibos-->

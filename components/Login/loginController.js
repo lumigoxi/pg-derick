@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { obtenerUsuario } = require("../Admin/adminService");
+const { verificarCredenciales } = require("../User/userService");
 
 const ruta = Router();
 
@@ -13,7 +13,7 @@ ruta.post("/", async (req, res) => {
   }
 
   try {
-    const user = await obtenerUsuario(req);
+    const user = await verificarCredenciales(req);
     req.session.user = { name: user.name, type: user.type };
     res.redirect("/home");
   } catch (error) {
