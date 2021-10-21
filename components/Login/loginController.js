@@ -14,7 +14,7 @@ ruta.post("/", async (req, res) => {
 
   try {
     const user = await obtenerUsuario(req);
-    req.session.user = user;
+    req.session.user = { name: user.name, type: user.type };
     res.redirect("/home");
   } catch (error) {
     res.render("login", { error: error.message });

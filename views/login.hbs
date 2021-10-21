@@ -1,3 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EORM</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-danger" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="static/img/LGescuela.jpg" width="50px" height="50px">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ml-auto ">
+                    <!--<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>-->
+                    <li class="nav-item"><a class="nav-link" href="juegos.html">Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                 <!----   <li class="nav-item"><a class="nav-link" href="#">Register</a></li>-->
+                    <li class="nav-item"><a class="nav-link active" href="login">Iniciar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 <style>
     body{
         background: #ffe259;
@@ -23,14 +54,14 @@
                 <form action="/login" method="post">
                     <div class="mb-4"><!--base de input-->
                         <label form="text"  class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="user">
+                        <input type="text" class="form-control" name="email">
                     </div>
                     <div class="mb-4">
                         <label form="password"  class="form-label">Contraseña</label>
                         <input type="password" class="form-control" name="password">
                     </div>
                     <div class="d-grid">
-                    <button type="submit" class="btn btn-primary" href="index.<html>
+                    <button type="submit" class="btn btn-primary">
                     </html>">Inicio Sesion</button>
                     </div>
                     <div class="my-3 d-flex justify-content-center"><!--recuperacion de cuenta-->
@@ -41,3 +72,6 @@
         </div>
     </div>  
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

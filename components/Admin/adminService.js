@@ -23,17 +23,21 @@ const actualizarInfo = async ({ body: datosNuevos }) => {
 
 const obtenerUsuario = async ({ body: credentials }) => {
   try {
-    const user = adminRepository.verificarCredenciales(credentials);
-    if (!user) {
+    const user = await adminRepository.verificarCredenciales(credentials);
+    if (!user.name) {
       user = teachRepository.verificarCredenciales(credentials);
+      user.type = "teach";
     }
 
-    if (!user) {
+    if (!user.name) {
       user = studentRepository.verificarCredenciales(credentials);
+      user.type = "student";
     }
 
+    //posible bug, quitar el or
     return {
-      name: user.establecimiento || user.name,
+      name: user.name,
+      type: user.type || "admin",
     };
   } catch (error) {}
 };

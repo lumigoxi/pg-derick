@@ -5,7 +5,7 @@ const viewEngine = (app) => {
   app.engine(
     "hbs",
     handlebars({
-      defaultLayout: "base",
+      defaultLayout: "",
       layoutsDir: __dirname + "/../views",
       extname: ".hbs",
     })

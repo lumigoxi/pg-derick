@@ -15,7 +15,7 @@ const adminSchema = new Schema({
     type: String,
     lowercase: true,
   },
-  passowrd: {
+  password: {
     type: String,
     required: true,
   },

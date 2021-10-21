@@ -20,7 +20,6 @@ app.use(
 
 DB_CONNECT();
 routes(app);
-app.use("/static", express.static("public"));
 viewEngine(app);
 
 app.use(cors());

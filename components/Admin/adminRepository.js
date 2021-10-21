@@ -14,8 +14,14 @@ const actualizar = async (datosNuevos) => {
 };
 
 verificarCredenciales = async (credentials) => {
-  const user = await adminModel.findOne(credentials);
-  return user;
+  const user = await adminModel.findOne({
+    email: credentials.email,
+    password: credentials.password,
+  });
+
+  return {
+    name: user.establecimiento,
+  };
 };
 
 module.exports = {
