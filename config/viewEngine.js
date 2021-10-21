@@ -1,0 +1,16 @@
+const handlebars = require("express-handlebars");
+
+const viewEngine = (app) => {
+  app.set("views", __dirname + "/../views");
+  app.engine(
+    "hbs",
+    handlebars({
+      defaultLayout: "base",
+      layoutsDir: __dirname + "/../views",
+      extname: ".hbs",
+    })
+  );
+  app.set("view engine", "hbs");
+};
+
+module.exports = viewEngine;
