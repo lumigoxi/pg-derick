@@ -1,5 +1,6 @@
 const adminController = require("../components/User/userController");
 const loginController = require("../components/Login/loginController");
+const teacherController = require("../components/Teacher/teacherController");
 
 const login = require("../middleware/login");
 
@@ -9,15 +10,17 @@ const routes = (app) => {
   });
   app.use("/login", loginController);
   app.get("/home", login, (req, res) => {
-    if (req.session.user.type === "admin") {
-      res.render("gestor-docentes", { name: req.session.user.name });
-    }
-    if (req.session.user.type === "teacher") {
-      res.render("gestor-alumnos");
-    }
+    switch (req.session.user.type) {
+      case "admin":
+        res.redirect("/gestor-docentes");
+        break;
+      case "teach":
+        res.render("gestor-alumnos");
+        break;
 
-    if (req.session.user.type === "student") {
-      res.render("home");
+      default:
+        res.render("home");
+        break;
     }
   });
   app.use("/logout", login, (req, res) => {
@@ -25,6 +28,7 @@ const routes = (app) => {
     res.redirect("login");
   });
   app.use("/admin", adminController);
+  app.use("/gestor-docentes", teacherController);
 };
 
 module.exports = routes;

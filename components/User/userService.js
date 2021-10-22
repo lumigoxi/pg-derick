@@ -1,9 +1,12 @@
 const userRepository = require("./userRepository");
 const { Error } = require("mongoose");
 
-const obtenerInfo = async () => {
+const obtenerInfo = async (query, options) => {
+  if (!options) {
+    options = {};
+  }
   try {
-    const admin = await userRepository.obtenerInfo();
+    const admin = await userRepository.obtenerInfo(query, options);
     return admin;
   } catch (error) {
     console.log("[adminService] " + error.message);

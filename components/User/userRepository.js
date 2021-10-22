@@ -1,7 +1,7 @@
 const userModel = require("./userModel");
 
-const obtenerInfo = async () => {
-  return await userModel.find();
+const obtenerInfo = async (query, options) => {
+  return await userModel.find(query, options);
 };
 
 const actualizar = async (datosNuevos) => {
