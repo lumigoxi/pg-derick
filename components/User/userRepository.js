@@ -34,9 +34,15 @@ const actualizarPorId = async (id, datosNuevos) => {
   return admin;
 };
 
+const nuevoUsuario = async (datos) => {
+  const nuevoUsuario = new userModel(datos);
+  return nuevoUsuario.save();
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
   verificarCredenciales,
   actualizarPorId,
+  nuevoUsuario,
 };

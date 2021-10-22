@@ -14,11 +14,11 @@ const routes = (app) => {
       case "admin":
         res.redirect("/gestor-docentes");
         break;
-      case "teach":
+      case "teacher":
         res.render("gestor-alumnos");
         break;
 
-      default:
+      case "student":
         res.render("home");
         break;
     }

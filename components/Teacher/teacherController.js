@@ -5,6 +5,11 @@ const userService = require("../User/userService");
 const ruta = Router();
 
 ruta.get("/", async (req, res) => {
+  let myAction = {};
+  if (req.session.action) {
+    myAction = req.session.action;
+    req.session.action = null;
+  }
   try {
     const teachers = await userService.obtenerInfo({ type: "teacher" }, [
       "name",
@@ -14,7 +19,10 @@ ruta.get("/", async (req, res) => {
     teachers.forEach((element) => {
       data.push({ name: element.name, other: element.other, id: element._id });
     });
-    res.render("gestor-docentes", { teachers: data });
+    res.render("gestor-docentes", {
+      teachers: data,
+      action: myAction,
+    });
   } catch (err) {
     res.status(500).json({
       error: "Error inesperado",
@@ -47,7 +55,10 @@ ruta.get("/editar/:id", async (req, res) => {
 ruta.post("/editar/:id", async (req, res) => {
   try {
     const admin = await userService.actualizarPorId(req.params.id, req.body);
-    console.log(admin);
+    if (admin.name) {
+      req.session.action = { edit: "true", name: admin.name };
+    }
+    res.redirect("/gestor-docentes");
   } catch (err) {
     res.status(500).json({
       error: "No se pudo realizar la operacion",
@@ -55,6 +66,23 @@ ruta.post("/editar/:id", async (req, res) => {
       datos: null,
     });
   }
+});
+
+ruta.get("/nuevo", async (req, res) => {
+  try {
+    res.render("nuevo-docente");
+  } catch (err) {}
+});
+
+ruta.post("/nuevo", async (req, res) => {
+  try {
+    const nuevoDocente = await userService.agregarUsuario({
+      ...req.body,
+      type: "teacher",
+    });
+    req.session.action = { name: nuevoDocente.name, add: true };
+    res.redirect("/gestor-docentes");
+  } catch (err) {}
 });
 
 module.exports = ruta;

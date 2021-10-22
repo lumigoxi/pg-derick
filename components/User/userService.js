@@ -36,7 +36,16 @@ const verificarCredenciales = async ({ body: credentials }) => {
 
 const actualizarPorId = async (id, datosNuevos) => {
   try {
-    const admin = await userRepository.actualizarPorId(id, datosNuevos);
+    const formatData = {
+      name: datosNuevos.name,
+      email: datosNuevos.email,
+      password: datosNuevos.password,
+      other: {
+        seccion: datosNuevos.seccion,
+        grado: datosNuevos.grado,
+      },
+    };
+    const admin = await userRepository.actualizarPorId(id, formatData);
     return admin;
   } catch (error) {
     console.log("[adminService] " + error.message);
@@ -44,9 +53,23 @@ const actualizarPorId = async (id, datosNuevos) => {
   }
 };
 
+const agregarUsuario = async (datos) => {
+  const formatData = {
+    ...datos,
+    other: {
+      grado: datos.grado,
+      seccion: datos.seccion,
+    },
+  };
+  delete formatData.grado;
+  delete formatData.seccion;
+  const nuevoUsuario = await userRepository.nuevoUsuario(formatData);
+  return nuevoUsuario;
+};
 module.exports = {
   obtenerInfo,
   actualizarInfo,
   verificarCredenciales,
   actualizarPorId,
+  agregarUsuario,
 };
