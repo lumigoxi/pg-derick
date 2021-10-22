@@ -28,40 +28,29 @@
         </div>
     </nav>
     <section class="container pt-5">
-      <h3>Editar Docente</h3>
-        <form action="/gestor-docentes/editar/{{teacher.id}}" method="post">
   <div class="mb-3">
     <label class="form-label">Nombre</label>
-    <input type="text" class="form-control" name="name" value="{{teacher.name}}">
+    <input type="text" class="form-control" readonly value="{{teacher.name}}">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Correo</label>
-    <input type="email" class="form-control" name="email" value={{teacher.email}}>
+    <input type="email" class="form-control" readonly value={{teacher.email}}>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" name="password" value={{teacher.password}}>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Sección</label>
-    <input type="text" class="form-control" name="seccion" value={{teacher.other.seccion}}>
-  </div>
-  <label for="">Grado: </label>
-  <select class="form-select mb-4" name="grado">
-  <option selected>{{teacher.other.grado}}</option>
-  <option value="Primero">Primero</option>
-  <option value="Segundo">Segundo</option>
-  <option value="Tercero">Tercero</option>
-  <option value="Cuarto">Cuarto</option>
-  <option value="Quinto">Quinto</option>
-  <option value="Sexto">Sexto</option>
-</select>
-  <button type="submit" class="btn btn-primary">Actualizar</button>
-</form>
+  <button onclick="myConfirm()" class="btn btn-primary">Eliminar</button>
     </section>
+    <form action="/gestor-docentes/eliminar/{{teacher.id}}" id="eliminarDocente" method="post">
+    </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+  function myConfirm() {
+  let status = confirm("¿Esta seguro que quiere eliminar el usuario?");
+  if (status === true) {
+    document.querySelector("#eliminarDocente").submit();
+  }
+}
+</script>
 </body>
 </html>
 

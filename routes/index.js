@@ -1,6 +1,7 @@
 const adminController = require("../components/User/userController");
 const loginController = require("../components/Login/loginController");
 const teacherController = require("../components/Teacher/teacherController");
+const studentController = require("../components/Student/studentController");
 
 const login = require("../middleware/login");
 
@@ -15,7 +16,7 @@ const routes = (app) => {
         res.redirect("/gestor-docentes");
         break;
       case "teacher":
-        res.render("gestor-alumnos");
+        res.redirect("/gestor-alumnos");
         break;
 
       case "student":
@@ -29,6 +30,7 @@ const routes = (app) => {
   });
   app.use("/admin", adminController);
   app.use("/gestor-docentes", teacherController);
+  app.use("/gestor-alumnos", studentController);
 };
 
 module.exports = routes;

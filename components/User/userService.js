@@ -43,6 +43,7 @@ const actualizarPorId = async (id, datosNuevos) => {
       other: {
         seccion: datosNuevos.seccion,
         grado: datosNuevos.grado,
+        recursos: datosNuevos.recursos,
       },
     };
     const admin = await userRepository.actualizarPorId(id, formatData);
@@ -66,10 +67,16 @@ const agregarUsuario = async (datos) => {
   const nuevoUsuario = await userRepository.nuevoUsuario(formatData);
   return nuevoUsuario;
 };
+
+const eliminarUser = async (id) => {
+  const result = userRepository.deleteUserById(id);
+  return result;
+};
 module.exports = {
   obtenerInfo,
   actualizarInfo,
   verificarCredenciales,
   actualizarPorId,
   agregarUsuario,
+  eliminarUser,
 };

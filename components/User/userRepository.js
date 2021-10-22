@@ -39,10 +39,16 @@ const nuevoUsuario = async (datos) => {
   return nuevoUsuario.save();
 };
 
+const deleteUserById = async (id) => {
+  const result = await userModel.findByIdAndDelete({ _id: id });
+  return result;
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
   verificarCredenciales,
   actualizarPorId,
   nuevoUsuario,
+  deleteUserById,
 };
