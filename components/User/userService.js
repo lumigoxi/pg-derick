@@ -34,8 +34,19 @@ const verificarCredenciales = async ({ body: credentials }) => {
   } catch (error) {}
 };
 
+const actualizarPorId = async (id, datosNuevos) => {
+  try {
+    const admin = await userRepository.actualizarPorId(id, datosNuevos);
+    return admin;
+  } catch (error) {
+    console.log("[adminService] " + error.message);
+    throw new Error("Algo salio mal, intente mas tarde");
+  }
+};
+
 module.exports = {
   obtenerInfo,
   actualizarInfo,
   verificarCredenciales,
+  actualizarPorId,
 };

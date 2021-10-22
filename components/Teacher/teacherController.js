@@ -27,7 +27,14 @@ ruta.get("/", async (req, res) => {
 ruta.get("/editar/:id", async (req, res) => {
   try {
     const teacher = await userService.obtenerInfo({ _id: req.params.id });
-    res.render("editar-docente", { teacher: teacher });
+    const data = {
+      name: teacher[0].name,
+      email: teacher[0].email,
+      password: teacher[0].password,
+      other: teacher[0].other,
+      id: teacher[0]._id,
+    };
+    res.render("editar-docente", { teacher: data, name: data.name });
   } catch (err) {
     res.status(500).json({
       error: "Error inesperado",
@@ -37,21 +44,17 @@ ruta.get("/editar/:id", async (req, res) => {
   }
 });
 
-// ruta.patch("/", async (req, res) => {
-//   try {
-//     const admin = await userService.actualizarInfo(req);
-//     res.status(200).json({
-//       error: null,
-//       mensaje: "Admin actualizado con exito",
-//       datos: admin,
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       error: "No se pudo realizar la operacion",
-//       mensaje: err.message,
-//       datos: null,
-//     });
-//   }
-// });
+ruta.post("/editar/:id", async (req, res) => {
+  try {
+    const admin = await userService.actualizarPorId(req.params.id, req.body);
+    console.log(admin);
+  } catch (err) {
+    res.status(500).json({
+      error: "No se pudo realizar la operacion",
+      mensaje: err.message,
+      datos: null,
+    });
+  }
+});
 
 module.exports = ruta;

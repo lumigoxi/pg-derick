@@ -25,8 +25,18 @@ verificarCredenciales = async (credentials) => {
   };
 };
 
+const actualizarPorId = async (id, datosNuevos) => {
+  const admin = await userModel.findByIdAndUpdate(
+    { _id: id },
+    { ...datosNuevos },
+    { new: true }
+  );
+  return admin;
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
   verificarCredenciales,
+  actualizarPorId,
 };
