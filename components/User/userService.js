@@ -30,6 +30,9 @@ const verificarCredenciales = async ({ body: credentials }) => {
     return {
       name: user.name,
       type: user.type,
+      grado: user.grado,
+      seccion: user.seccion,
+      recursos: user.recursos,
     };
   } catch (error) {}
 };
@@ -68,6 +71,22 @@ const agregarUsuario = async (datos) => {
   return nuevoUsuario;
 };
 
+const agregarUsuarioStudent = async (datos) => {
+  const formatData = {
+    ...datos,
+    other: {
+      grado: datos.grado,
+      seccion: datos.seccion,
+      recursos: datos.recursos,
+    },
+  };
+  delete formatData.grado;
+  delete formatData.seccion;
+  delete formatData.recursos;
+  const nuevoUsuario = await userRepository.nuevoUsuario(formatData);
+  return nuevoUsuario;
+};
+
 const eliminarUser = async (id) => {
   const result = userRepository.deleteUserById(id);
   return result;
@@ -79,4 +98,5 @@ module.exports = {
   actualizarPorId,
   agregarUsuario,
   eliminarUser,
+  agregarUsuarioStudent,
 };

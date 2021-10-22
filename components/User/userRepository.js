@@ -22,6 +22,9 @@ verificarCredenciales = async (credentials) => {
   return {
     name: user.name,
     type: user.type,
+    seccion: user.other.seccion,
+    grado: user.other.grado,
+    recursos: user.other.recursos,
   };
 };
 

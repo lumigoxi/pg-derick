@@ -12,14 +12,26 @@ ruta.get("/", async (req, res) => {
     req.session.action = null;
   }
   try {
-    const student = await userService.obtenerInfo({ type: "student" }, [
-      "name",
-      "other",
-    ]);
+    const student = await userService.obtenerInfo(
+      {
+        type: "student",
+      },
+      ["name", "other"]
+    );
+
     const data = [];
     student.forEach((element) => {
-      data.push({ name: element.name, other: element.other, id: element._id });
+      if (
+        element.other.grado === req.session.user.grado &&
+        element.other.seccion === req.session.user.seccion
+      )
+        data.push({
+          name: element.name,
+          other: element.other,
+          id: element._id,
+        });
     });
+
     res.render("gestor-alumnos", {
       alumnos: data,
       action: myAction,
@@ -36,13 +48,35 @@ ruta.get("/", async (req, res) => {
 ruta.get("/editar/:id", async (req, res) => {
   try {
     const teacher = await userService.obtenerInfo({ _id: req.params.id });
+
+    let recursos = [];
+    let bandera = false;
+    req.session.user.recursos.forEach((element) => {
+      if (teacher[0].other.recursos) {
+        teacher[0].other.recursos.forEach((elem) => {
+          if (element.name === elem) {
+            recursos.push({ name: elem, check: true });
+            bandera = true;
+            return;
+          }
+        });
+      }
+      if (bandera) {
+        bandera = false;
+        return;
+      }
+      recursos.push({ name: element.name, check: false });
+    });
+
     const data = {
       name: teacher[0].name,
       email: teacher[0].email,
       password: teacher[0].password,
       other: teacher[0].other,
       id: teacher[0]._id,
+      recursos: recursos,
     };
+    console.log(data);
     res.render("editar-alumno", { alumno: data, name: data.name });
   } catch (err) {
     res.status(500).json({
@@ -89,18 +123,26 @@ ruta.post("/editar/:id", async (req, res) => {
 
 ruta.get("/nuevo", async (req, res) => {
   try {
-    res.render("nuevo-docente");
+    res.render("nuevo-alumno");
   } catch (err) {}
 });
 
 ruta.post("/nuevo", async (req, res) => {
   try {
-    const nuevoDocente = await userService.agregarUsuario({
+    let recursos = [];
+    if (req.body.recursos)
+      [
+        req.body.recursos.forEach((element) => {
+          recursos.push(element);
+        }),
+      ];
+    const nuevoStudent = await userService.agregarUsuarioStudent({
       ...req.body,
-      type: "teacher",
+      recursos: recursos,
+      type: "student",
     });
-    req.session.action = { name: nuevoDocente.name, add: true };
-    res.redirect("/gestor-docentes");
+    req.session.action = { name: nuevoStudent.name, add: true };
+    res.redirect("/gestor-alumnos");
   } catch (err) {}
 });
 
