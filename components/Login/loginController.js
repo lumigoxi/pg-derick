@@ -21,6 +21,7 @@ ruta.post("/", async (req, res) => {
         grado: user.grado,
         seccion: user.seccion,
         recursos: user.recursos,
+        id: user.id,
       };
     }
     console.log(req.session.user);

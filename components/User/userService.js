@@ -33,6 +33,7 @@ const verificarCredenciales = async ({ body: credentials }) => {
       grado: user.grado,
       seccion: user.seccion,
       recursos: user.recursos,
+      id: user.id,
     };
   } catch (error) {}
 };
@@ -95,6 +96,14 @@ const eliminarUser = async (id) => {
 const actualizarMany = async (datos, filter) => {
   return await userRepository.actualizarMany(datos, filter);
 };
+
+const actualizarRecursos = async (id, recursos) => {
+  try {
+    return await userRepository.actualizarRecursos(id, recursos);
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   obtenerInfo,
   actualizarInfo,
@@ -104,4 +113,5 @@ module.exports = {
   eliminarUser,
   agregarUsuarioStudent,
   actualizarMany,
+  actualizarRecursos,
 };

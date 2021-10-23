@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
                     <p class=" pt-3 nav-item text-white">{{name}}</p>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="logout">Cerrar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -33,6 +33,7 @@
     <section class="container pt-5">
         <h3>Gestor de alumnos</h3>
         <a class="btn btn-success mb-3" href="/gestor-alumnos/nuevo">Agregar Alumno</a>
+        <a class="btn btn-secondary mb-3" href="/gestor-alumnos/agregar-actividad">Agregar material</a>
         <a class="btn btn-primary mb-3" href="/gestor-alumnos/actividades-all">Asignar material para toda la clase</a>
             {{#if action.name}}
         <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">

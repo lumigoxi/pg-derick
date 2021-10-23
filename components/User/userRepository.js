@@ -13,7 +13,7 @@ const actualizar = async (datosNuevos) => {
   return admin;
 };
 
-verificarCredenciales = async (credentials) => {
+const verificarCredenciales = async (credentials) => {
   const user = await userModel.findOne({
     email: credentials.email,
     password: credentials.password,
@@ -25,6 +25,7 @@ verificarCredenciales = async (credentials) => {
     seccion: user.other.seccion,
     grado: user.other.grado,
     recursos: user.other.recursos,
+    id: user.id,
   };
 };
 
@@ -62,6 +63,15 @@ const actualizarMany = async (datos, filter) => {
   return result;
 };
 
+const actualizarRecursos = async (id, datos) => {
+  return await userModel.findOneAndUpdate(
+    { _id: id },
+    {
+      "other.recursos": datos,
+    }
+  );
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
@@ -70,4 +80,5 @@ module.exports = {
   nuevoUsuario,
   deleteUserById,
   actualizarMany,
+  actualizarRecursos,
 };

@@ -9,6 +9,9 @@ const routes = (app) => {
   app.get("/", (req, res) => {
     res.render("publicPage");
   });
+  app.get("/historia", (req, res) => {
+    res.render("historia");
+  });
   app.use("/login", loginController);
   app.get("/home", login, (req, res) => {
     switch (req.session.user.type) {
@@ -28,9 +31,9 @@ const routes = (app) => {
     req.session.user = null;
     res.redirect("login");
   });
-  app.use("/admin", adminController);
-  app.use("/gestor-docentes", teacherController);
-  app.use("/gestor-alumnos", studentController);
+  app.use("/admin", login, adminController);
+  app.use("/gestor-docentes", login, teacherController);
+  app.use("/gestor-alumnos", login, studentController);
 };
 
 module.exports = routes;

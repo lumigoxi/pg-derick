@@ -187,8 +187,21 @@ ruta.post("/actividades-all", async (req, res) => {
     grado: req.session.user.grado,
     seccion: req.session.user.seccion,
   });
-  console.log(result);
-  res.send(result);
+  res.redirect("/gestor-alumnos");
+});
+
+ruta.get("/agregar-actividad", async (req, res) => {
+  res.render("agregar-actividad");
+});
+
+ruta.post("/agregar-actividad", async (req, res) => {
+  const misRecursos = req.session.user.recursos;
+  misRecursos.push(req.body);
+  const result = await userService.actualizarRecursos(
+    req.session.user.id,
+    misRecursos
+  );
+  res.redirect("/gestor-alumnos");
 });
 
 module.exports = ruta;
