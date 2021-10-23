@@ -120,7 +120,8 @@ const buscarRecursos = async (id) => {
     let bandera = false;
     const recursosUser = data.other.recursos;
     const recursosProfesor = teacher[0].other.recursos;
-
+    console.log(recursosProfesor);
+    console.log(recursosUser);
     recursosUser.forEach((ele) => {
       if (recursosUser) {
         recursosProfesor.forEach((elem) => {
