@@ -2,6 +2,7 @@ const adminController = require("../components/User/userController");
 const loginController = require("../components/Login/loginController");
 const teacherController = require("../components/Teacher/teacherController");
 const studentController = require("../components/Student/studentController");
+const juegosController = require("../components/Juegos/juegosController");
 
 const login = require("../middleware/login");
 
@@ -23,7 +24,8 @@ const routes = (app) => {
         break;
 
       case "student":
-        res.render("home");
+        req.session.miId = { id: req.session.user.id };
+        res.redirect("/juegos");
         break;
     }
   });
@@ -34,6 +36,7 @@ const routes = (app) => {
   app.use("/admin", login, adminController);
   app.use("/gestor-docentes", login, teacherController);
   app.use("/gestor-alumnos", login, studentController);
+  app.use("/juegos", login, juegosController);
 };
 
 module.exports = routes;

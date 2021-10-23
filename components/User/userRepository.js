@@ -72,6 +72,11 @@ const actualizarRecursos = async (id, datos) => {
   );
 };
 
+const buscarRecursos = async (id) => {
+  const data = await userModel.findOne({ _id: id });
+  return data;
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
@@ -81,4 +86,5 @@ module.exports = {
   deleteUserById,
   actualizarMany,
   actualizarRecursos,
+  buscarRecursos,
 };

@@ -104,6 +104,47 @@ const actualizarRecursos = async (id, recursos) => {
     console.log(error);
   }
 };
+
+const buscarRecursos = async (id) => {
+  try {
+    const data = await userRepository.buscarRecursos(id);
+    const teacher = await userRepository.obtenerInfo(
+      {
+        type: "teacher",
+        "other.grado": data.other.grado,
+        "other.seccion": data.other.seccion,
+      },
+      {}
+    );
+    let misRecursos = [];
+    let bandera = false;
+    const recursosUser = data.other.recursos;
+    const recursosProfesor = teacher[0].other.recursos;
+
+    recursosUser.forEach((ele) => {
+      if (recursosUser) {
+        recursosProfesor.forEach((elem) => {
+          if (ele === elem.name) {
+            misRecursos.push(elem);
+            bandera = true;
+            return;
+          }
+        });
+      }
+      if (bandera) {
+        bandera = false;
+        return;
+      }
+      misRecursos.push(elem);
+    });
+    return {
+      recursos: misRecursos,
+    };
+  } catch (error) {
+    console.log("UserService" + error);
+  }
+};
+
 module.exports = {
   obtenerInfo,
   actualizarInfo,
@@ -114,4 +155,5 @@ module.exports = {
   agregarUsuarioStudent,
   actualizarMany,
   actualizarRecursos,
+  buscarRecursos,
 };

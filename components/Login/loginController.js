@@ -14,7 +14,7 @@ ruta.post("/", async (req, res) => {
 
   try {
     const user = await verificarCredenciales(req);
-    req.session.user = { name: user.name, type: user.type };
+    req.session.user = { name: user.name, type: user.type, id: user.id };
     if (user.type === "teacher") {
       req.session.user = {
         ...req.session.user,
@@ -24,7 +24,6 @@ ruta.post("/", async (req, res) => {
         id: user.id,
       };
     }
-    console.log(req.session.user);
     res.redirect("/home");
   } catch (error) {
     res.render("login", { error: error.message });
