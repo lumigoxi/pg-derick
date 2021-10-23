@@ -47,6 +47,21 @@ const deleteUserById = async (id) => {
   return result;
 };
 
+const actualizarMany = async (datos, filter) => {
+  const result = await userModel.updateMany(
+    {
+      type: "student",
+      "other.grado": filter.grado,
+      "other.seccion": filter.seccion,
+    },
+    {
+      "other.recursos": [...datos],
+    }
+  );
+
+  return result;
+};
+
 module.exports = {
   actualizar,
   obtenerInfo,
@@ -54,4 +69,5 @@ module.exports = {
   actualizarPorId,
   nuevoUsuario,
   deleteUserById,
+  actualizarMany,
 };

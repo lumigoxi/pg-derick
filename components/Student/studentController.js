@@ -156,7 +156,7 @@ ruta.get("/eliminar/:id", async (req, res) => {
       other: teacher[0].other,
       id: teacher[0]._id,
     };
-    res.render("eliminar-docente", { teacher: data, name: data.name });
+    res.render("eliminar-alumno", { teacher: data, name: data.name });
   } catch (err) {
     res.status(500).json({
       error: "No se pudo realizar la operacion",
@@ -170,8 +170,25 @@ ruta.post("/eliminar/:id", async (req, res) => {
   try {
     const result = await userService.eliminarUser(req.params.id);
     req.session.action = { delete: true, name: result.name };
-    res.redirect("/gestor-docentes");
+    res.redirect("/gestor-alumnos");
   } catch (err) {}
+});
+
+ruta.get("/actividades-all", async (req, res) => {
+  res.render("actividades-all", { recursos: req.session.user.recursos });
+});
+
+ruta.post("/actividades-all", async (req, res) => {
+  const data = [];
+  req.body.recursos.forEach((element) => {
+    data.push(element);
+  });
+  const result = await userService.actualizarMany(data, {
+    grado: req.session.user.grado,
+    seccion: req.session.user.seccion,
+  });
+  console.log(result);
+  res.send(result);
 });
 
 module.exports = ruta;

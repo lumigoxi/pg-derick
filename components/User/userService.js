@@ -91,6 +91,10 @@ const eliminarUser = async (id) => {
   const result = userRepository.deleteUserById(id);
   return result;
 };
+
+const actualizarMany = async (datos, filter) => {
+  return await userRepository.actualizarMany(datos, filter);
+};
 module.exports = {
   obtenerInfo,
   actualizarInfo,
@@ -99,4 +103,5 @@ module.exports = {
   agregarUsuario,
   eliminarUser,
   agregarUsuarioStudent,
+  actualizarMany,
 };
